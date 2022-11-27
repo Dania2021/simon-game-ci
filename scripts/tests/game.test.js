@@ -13,6 +13,14 @@ beforeAll(() => {
     document.close();
 });
 
+describe("pre-game", () => {
+    test("clicking buttons before newGame should fail", () => {
+        game.lastButton = "";
+        document.getElementById("button2").click();
+        expect(game.lastButton).toEqual("");
+    });
+});
+
 describe('game object contains correct keys', () => {
     test('score key exits', () => {
         expect('score' in game).toBe(true);
@@ -76,9 +84,6 @@ describe('newGame works correctly', () => {
         for(let element of elements) {
             expect(element.getAttribute('data-listener')).toEqual('true');
         }
-    });
-    test('should set lastButton value to be empty', () => {
-        expect(game.lastButton).toBe('');
     });
     test('should set turnInProgress value to false', () => {
         expect(game.turnInProgress).toBe(true);
